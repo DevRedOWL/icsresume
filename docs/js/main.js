@@ -59,7 +59,7 @@ function GoToHell(goddamn){
 
   xml.find(goddamn).text(goddamn);
 
-  $.post({ comment: 1, date_created: 1, date_due: 1, date_supply: 1, number: 1  }, xml, function(resp) {
+  $.post({}, xml, function(resp) {
     alert(resp);
   }, "xml");
 });
