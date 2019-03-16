@@ -1,0 +1,32 @@
+.marg {
+  margin-top: 20px;
+}
+
+.viewcard {
+  border: 1px solid #e6e7e8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+th {
+  max-width: 30px;
+}
+
+tbody tr:first-child {
+  background-color: #007bff !important;
+  color: white;
+}
+
+tbody .ds {
+  width: 10%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.ds i:hover{
+  color: #dc3545;
+  transition: 0.15s ease-in-out;
+}
