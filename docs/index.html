@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/master.css">
+  <link rel="stylesheet" href="css/fa.css">
+  <title>ICS Task By Varentsov D.</title>
+</head>
+
+<header>
+  <!-- Коробка с карандашами -->
+</header>
+
+<body class="body">
+
+  <!-- Контейнер с ошибками -->
+  <div class="container marg" style="height:50px;">
+    <div id="sended" class="alert alert-success" style="display: none;">Накладная успешно добавлена в базу.</div>
+    <div id="unsended" class="alert alert-danger" style="display: none;">Все поля должны быть заполнены.</div>
+    <noscript><div class="alert alert-danger">Для работы сайта необходим JavaScript</div></noscript>
+  </div>
+
+  <!-- Меню добавления -->
+  <div id="AddNewInvoice" class="container viewcard">
+    <form>
+      <div class="row"><div class="col"><span class="badge badge-primary">Номер накладной</span></div></div>
+      <div class="row">
+        <div class="col">
+          <input id="Number" class="form-control" placeholder="Номер накладной" required></input>
+        </div>
+      </div>
+
+      <div class="row marg">
+        <div class="col"><span class="badge badge-primary">Дата поставки</span></div>
+        <div class="col"><span class="badge badge-primary">Дата выставления счета</span></div></div>
+      <div class="row">
+        <div class="col">
+          <input id="Supply" type="date" class="form-control" placeholder="Дата поставки" required></input>
+        </div>
+        <div class="col">
+          <input id="Invoice" type="date" class="form-control" placeholder="Дата выставления счета" required></input>
+        </div>
+      </div>
+
+      <div class="row marg"><div class="col"><span class="badge badge-primary">Комментарий</span></div></div>
+      <div class="row">
+        <div class="col">
+          <textarea id="Comment" class="form-control" placeholder="Комментарий" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="row marg">
+        <div class="col">
+          <button type="button" class="btn btn-primary" name="button" onclick="PostThat()">Добавить накладную</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- Демонстрация списка -->
+  <div id="ShowListOfInvoice" class="container viewcard">
+    <table id="ElementsList" class="table table-striped">
+      <thread style="color: #007bff">
+        <th scope="col">Дата создания</th>
+        <th scope="col">Номер накладной</th>
+        <th scope="col">Дата поставки</th>
+        <th scope="col">Комментарий</th>
+        <th scope="col" style="font-size: 1rem;">Действия</th>
+      </thread>
+      <!-- Сюда генерируем элементы -->
+    </table>
+  </div>
+
+  <input id="DeleteThat" class="form-control" placeholder="Накладная" required></input>
+    <button type="button" class="btn btn-warning" name="button" onclick="GoToHell(document.getElementById('DeleteThat').value)">Удолить накладную</button>
+
+
+  <!-- Кнопки для отладки -->
+  <div class="container">
+    <div class="row marg">
+      <div class="col">
+        <button type="button" class="btn btn-secondary" name="button" onclick="GotIt()">Обновить список накладных</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<footer>
+  <script src="js/jq.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/main.js"></script>
+</footer>
+
+</html>
