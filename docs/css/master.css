@@ -35,3 +35,9 @@ tbody .options {
     color: #0094ff;
     transition: 0.15s ease-in-out;
 }
+
+.options .lastedit {
+    font-size: 12px;
+    white-space: normal;
+    vertical-align: bottom;
+}

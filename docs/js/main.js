@@ -27,11 +27,11 @@ function onAjaxSuccess(data) {
     console.log(ThisRest); // Выводим в консоль для отладки
     // Выводим все элементы в таблицу
     $.each(ThisRest, function (index, val) {
-        newline = "<tr id='" + val.id + "'><th>" + val.date_created + "</th><th>" + val.number + "</th><th>"
+        newline = "<tr id='" + val.id + "'><th>" + val.date_supply + "</th><th>" + val.number + "</th><th>"
             + val.date_due + "</th><th>" + val.comment + "</th>" + "<th class ='options'>" 
             + "<i class='del fas fa-trash-alt' onclick='RemoveItem(\"" + val.id + "\")'> </i> " 
-            + "<i class='edit fas fa-edit' onclick='EditItem(\"" + val.id + "\")'> </i>" 
-            + "</th>" + "</tr>"
+            + "<i class='edit fas fa-edit' onclick='EditItem(\"" + val.id + "\")'> </i>"
+            + "<span class='lastedit badge badge-success'>Изменен:\n" + val.date_created + "</span> </th>" + "</tr>"
         $('#ElementsList').append(newline);
     });
 }
@@ -52,8 +52,8 @@ function PostThat() {
             .done(function() // Если постинг прошел успешно
             {              
                 ShowMessage('#sended'); // Показываем уведомление о добавлении
-                // Добавляем строку в таблицу
-                newline = "<tr id='" + thisid + "'><th>" + dat + "</th><th>" + num + "</th><th>"
+                // Добавляем строку в таблицу val.date_created / dat
+                newline = "<tr id='" + thisid + "'><th>" + sup + "</th><th>" + num + "</th><th>"
                     + inv + "</th><th>" + com + "</th>" + "<th class ='options'>" 
                     + "<i class='del fas fa-trash-alt' onclick='RemoveItem(\"" + thisid + "\")'> </i> "
                     + "<i class='edit fas fa-edit' onclick='EditItem(\"" + thisid + "\")'> </i>"
