@@ -53,14 +53,6 @@ function PostThat() {
 }
 
 // Метод удаления
-function GoToHell(goddamn){
-  $.get(ServerUrl, function(data) {
-  var xml = $(data);
-
-  xml.find(goddamn).text(goddamn);
-
-  $.post({}, xml, function(resp) {
-    alert(resp);
-  }, "xml");
-});
+function GoToHell(goddamn) {
+    $.delete(ServerUrl, { id=goddamn });
 }
