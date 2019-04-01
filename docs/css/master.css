@@ -1,29 +1,29 @@
 .marg {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .viewcard {
-  border: 1px solid #e6e7e8;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
+    border: 1px solid #e6e7e8;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
 }
 
 th {
-  max-width: 30px;
+    max-width: 30px;
 }
 
 tbody tr:first-child {
-  background-color: #007bff !important;
-  color: white;
+    background-color: #007bff !important;
+    color: white;
 }
 
 tbody .options {
-  width: 10%;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 26px;
-  cursor: pointer;
+    width: 10%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 26px;
+    cursor: pointer;
 }
 
 .options i.del:hover {
@@ -47,4 +47,8 @@ tbody .options {
     font-size: 12px;
     white-space: normal;
     vertical-align: bottom;
+    transition: 0.25s ease-in-out;
 }
+    .options .lastedit:hover {
+        background-color: rgba(0, 103, 204, 0.52);
+    }

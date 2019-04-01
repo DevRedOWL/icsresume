@@ -1,30 +1,23 @@
 var ThisRest; // Ну на всякий случай сохраним, че нам
 var ServerUrl = "https://icsresume.herokuapp.com/invoices";
 
-// При загрузке документа
+// Готовность документа к работе
 $(document).ready(function () {
     ShowMessage("none");
     GotIt();
 });
 
-// Метод получения списка
-function GotIt() {
-    $('#ElementsList tr').slice(1).remove(); // Очищаем таблицу
-    $.get(ServerUrl, onAjaxSuccess);
-}
-
 // Метод отображения сообщений
 function ShowMessage(type) {
-    $('#sended').hide(); $('#edited').hide();  $('#removed').hide(); $('#unsended').hide(); $('#exist').hide(); 
+    $('#sended').hide(); $('#edited').hide(); $('#removed').hide(); $('#unsended').hide(); $('#exist').hide();
     if (type != "none") {
         $(type).fadeIn('fast');
-        setTimeout(function () { $(type).fadeOut('slow'); }, 2000);  
-    }       
+        setTimeout(function () { $(type).fadeOut('slow'); }, 2000);
+    }
 }
 
 // Метод генерации строки таблицы
 function NewLine(thisid, name, date_due, date_sup, comment, created) {
-    console.log(thisid);
     return "<tr id='" + thisid + "'><th>" + date_sup + "</th><th>" + name + "</th><th>"
         + date_due + "</th><th>" + comment + "</th>" + "<th class ='options'>"
         + "<i class='del fas fa-trash-alt' onclick='RemoveItem(\"" + thisid + "\")'> </i> "
@@ -32,7 +25,13 @@ function NewLine(thisid, name, date_due, date_sup, comment, created) {
         + "<span class='lastedit badge'>Изменен:\n" + created + "</span> </th>" + "</tr>"
 }
 
-// Метод, выполняющийся при успехе GET запроса
+// Метод получения списка
+function GotIt() {
+    $('#ElementsList tr').slice(1).remove(); // Очищаем таблицу
+    $.get(ServerUrl, onAjaxSuccess);
+}
+
+// Метод, выполняющийся при успехе GET запроса с пол
 function onAjaxSuccess(data) {
     ThisRest = data; // Запоминаем текущее состояние
     console.log(ThisRest); // Выводим в консоль для отладки
@@ -103,7 +102,7 @@ function GetFields(data) {
         + "<th class ='options'>"
         + "<i class='save fas fa-save' onclick='OnSaveChanges(\"" + data.id + "\")'> </i>"
         + "</th>" + "</tr>"; 
-    $("#"+data.id).replaceWith(newline);
+    $("#"+data.id).replaceWith(newline); // Заменяем строчку
     // Свойства: id date_supply number date_due comment date_created 
 }
 
@@ -118,14 +117,14 @@ function OnSaveChanges(objectid) {
         // Формируем PUT запрос
         $.ajax({
             url: ServerUrl + "/" + objectid,
-            type: 'PUT',
+            type: 'PUT', 
             data: { comment: com, date_created: dat, date_due: inv, date_supply: sup, number: num },
             success: function () {
                 ShowMessage('#edited'); // Показываем уведомление об удалении
                 console.log('Накладная #' + objectid + ' успешно изменена');
             }
         });
-        $("#" + objectid).replaceWith(NewLine(objectid, num, inv, sup, com, dat));
+        $("#" + objectid).replaceWith(NewLine(objectid, num, inv, sup, com, dat)); // Заменяем строчку
     }
     else {
         ShowMessage('#unsended'); // Показываем уведомление об ошибке
