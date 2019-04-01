@@ -20,7 +20,9 @@ function onAjaxSuccess(data) {
   console.log(ThisRest); // Выводим в консоль для отладки
   // Выводим все элементы в таблицу
   $.each(ThisRest, function(index, val){
-        newline = "<tr><th>"+val.date_created+"</th><th>"+val.number+"</th><th>"+val.date_due+"</th><th>"+val.comment+"</th><th class ='ds'><i class='fas fa-trash-alt'></i></th></tr>"
+      newline = "<tr><th>" + val.date_created + "</th><th>" + val.number + "</th><th>" + val.date_due
+          + "</th><th>" + val.comment + "</th><th class ='ds'><i class='fas fa-trash-alt' id='" + val.id
+          + "'onclick = 'RemoveItem("+ val.id +")' ></i ></th ></tr > "
         $('#ElementsList').append(newline);
     });
 }
@@ -41,7 +43,7 @@ function PostThat() {
     // Показываем уведомление о добавлении
     $('#sended').fadeIn('fast'); setTimeout(function() {  $('#sended').fadeOut('slow'); }, 3000); $('#unsended').hide(); // .show
     // Добавляем строку в таблицу
-    newline = "<tr><th>" + dat + "</th><th>" + num + "</th><th>" + inv + "</th><th>" + com + "</th><th class ='ds'><i class='fas fa-trash-alt'></i></th></tr>"
+    newline = "<tr><th>" + dat + "</th><th>" + num + "</th><th>" + inv + "</th><th>" + com + "</th><th class ='ds'><i class='fas fa-trash-alt' data=''></i></th></tr>"
     $('#ElementsList').append(newline);
   }
   // Если поля не заполнены
@@ -53,12 +55,12 @@ function PostThat() {
 }
 
 // Метод удаления
-function GoToHell(goddamn) {
+function RemoveItem(objectid) {
     $.ajax({
-        url: ServerUrl + "/" + goddamn,
+        url: ServerUrl + "/" + objectid,
         type: 'DELETE',
         success: function (result) {
-            // Do something with the result
+            $('#' + objectid).remove;
         }
     });
 }
