@@ -36,7 +36,14 @@ tbody .options {
     transition: 0.15s ease-in-out;
 }
 
+.options i.save:hover {
+    color: #369e0a;
+    transition: 0.15s ease-in-out;
+}
+
 .options .lastedit {
+    background-color: #0067cc;
+    color: white;
     font-size: 12px;
     white-space: normal;
     vertical-align: bottom;
