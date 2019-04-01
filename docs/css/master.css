@@ -18,15 +18,20 @@ tbody tr:first-child {
   color: white;
 }
 
-tbody .ds {
+tbody .options {
   width: 10%;
   text-align: center;
   vertical-align: middle;
-  font-size: 30px;
+  font-size: 26px;
   cursor: pointer;
 }
 
-.ds i:hover{
-  color: #dc3545;
-  transition: 0.15s ease-in-out;
+.options i.del:hover {
+    color: #dc3545;
+    transition: 0.15s ease-in-out;
+}
+
+.options i.edit:hover {
+    color: #0094ff;
+    transition: 0.15s ease-in-out;
 }

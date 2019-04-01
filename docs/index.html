@@ -18,7 +18,9 @@
   <!-- Контейнер с ошибками -->
   <div class="container marg" style="height:50px;">
     <div id="sended" class="alert alert-success" style="display: none;">Накладная успешно добавлена в базу.</div>
+    <div id="removed" class="alert alert-success" style="display: none;">Накладная успешно удалена.</div>
     <div id="unsended" class="alert alert-danger" style="display: none;">Все поля должны быть заполнены.</div>
+    <div id="exist" class="alert alert-warning" style="display: none;">Накладная с такими параметрами уже существует.</div>
     <noscript><div class="alert alert-danger">Для работы сайта необходим JavaScript</div></noscript>
   </div>
 
@@ -86,9 +88,10 @@
 </body>
 
 <footer>
-  <script src="js/jq.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/main.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/jq.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
 </footer>
 
 </html>
