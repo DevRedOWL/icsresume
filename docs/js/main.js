@@ -21,8 +21,8 @@ function onAjaxSuccess(data) {
   // Выводим все элементы в таблицу
   $.each(ThisRest, function(index, val){
       newline = "<tr><th>" + val.date_created + "</th><th>" + val.number + "</th><th>" + val.date_due
-          + "</th><th>" + val.comment + "</th><th class ='ds'><i class='fas fa-trash-alt' id='" + val.id
-          + "'onclick = 'RemoveItem("+ val.id +")' ></i ></th ></tr > "
+          + "</th><th>" + val.comment + "</th><th class ='ds'><i class='fas fa-trash-alt' id='" + val.id +
+          + "' onclick = 'RemoveItem(\""+ val.id +"\")' > </i></th></tr> "
         $('#ElementsList').append(newline);
     });
 }
