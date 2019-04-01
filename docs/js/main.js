@@ -54,5 +54,12 @@ function PostThat() {
 
 // Метод удаления
 function GoToHell(goddamn) {
-    $.delete(ServerUrl, { id=goddamn });
+    $.ajax({
+        url: ServerUrl,
+        type: 'DELETE',
+        data: {"id": goddamn},
+        success: function (result) {
+            // Do something with the result
+        }
+    });
 }
