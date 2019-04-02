@@ -132,41 +132,6 @@
 			"response": []
 		},
 		{
-			"name": "DelThat",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "149fe0bc-d94c-47b3-938f-c23c66da6c69",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/{{lastreq}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"{{lastreq}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "EditOne",
 			"event": [
 				{
@@ -227,6 +192,41 @@
 							"type": "text"
 						}
 					]
+				},
+				"url": {
+					"raw": "{{url}}/{{lastreq}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{lastreq}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DelThat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "149fe0bc-d94c-47b3-938f-c23c66da6c69",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
 				"url": {
 					"raw": "{{url}}/{{lastreq}}",
