@@ -23,6 +23,17 @@
 ![Удаление накладной с использованием Postman](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Postman_2-3.png)
 
 ## 2.2 Тестировние запросов с использованием Fiddler
+> Добавление накладной с использованием Fiddler
+
+![Добавление накладной с использованием Fiddler](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Fiddler_2-1.png)
+
+> Редактирование накладной с использованием Fiddler
+
+![Редактирование накладной с использованием Fiddler](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Fiddler_2-2.png)
+
+> Удаление накладной с использованием Fiddler
+
+![Удаление накладной с использованием Fiddler](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Fiddler_2-3.png)
 
 ## 3. Автоматическое тестирование с использованием Postman
 
