@@ -53,7 +53,7 @@ function PostThat() {
     var thisid = CryptoJS.MD5(num + sup + inv + com).toString(); // Преобразуем ид в md5
     // Если все поля, кроме комментария заполнены
     if (num != 0 && sup != "Invalid Date" && inv != "Invalid Date") {
-        // Создаем пост запрос на основании аргументов
+        // Создаем пост запрос на основании аргументов 
         console.log("[POST] Запрос:\n" + ServerUrl); // Отладка
         $.post(ServerUrl, { id: thisid, comment: com, date_created: dat, date_due: inv, date_supply: sup, number: num })
             .done(function() // Если постинг прошел успешно

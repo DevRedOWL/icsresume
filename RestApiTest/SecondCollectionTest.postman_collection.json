@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "33694129-25d4-4375-a8b6-6b012f6dd7da",
+		"name": "SecondCollectionTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAndSort",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "332b8aca-5130-4939-903d-c5fefc7a1e3d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}?date_due={{date_due}}&date_supply={{date_supply}}",
+					"host": [
+						"{{url}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}",
+							"disabled": true
+						},
+						{
+							"key": "number",
+							"value": "{{number}}",
+							"disabled": true
+						},
+						{
+							"key": "date_created",
+							"value": "{{date_created}}",
+							"disabled": true
+						},
+						{
+							"key": "date_due",
+							"value": "{{date_due}}"
+						},
+						{
+							"key": "date_supply",
+							"value": "{{date_supply}}"
+						},
+						{
+							"key": "comment",
+							"value": "{{comment}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

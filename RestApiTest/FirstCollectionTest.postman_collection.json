@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "70da7e34-01d8-494b-ae2e-4415516a6304",
+		"name": "FirstCollectionTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25ad74ac-b4c3-4bbf-83fb-eb1815611473",
+						"exec": [
+							"// Тест на работоспособность",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Тест на количество элементов",
+							"pm.test(\"Response elements count\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"reqlength\", jsonData.length);",
+							"    pm.expect(jsonData.length).to.eql(pm.environment.get(\"reqlength\")); ",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostSome",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0d479dde-771b-4bca-a37d-7c40ce137fd5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f68b165-fff4-4007-9a61-ccb747220bc6",
+						"exec": [
+							"// Тест на успех пост запроса",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"pm.test(\"Saving last ID\", function () {",
+							"    pm.environment.set(\"lastreq\", pm.response.json().id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "testid2153628872382dh87126s8h",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "N-000000000001",
+							"type": "text"
+						},
+						{
+							"key": "date_created",
+							"value": "02.04.2019",
+							"type": "text"
+						},
+						{
+							"key": "date_due",
+							"value": "22.06.1941",
+							"type": "text"
+						},
+						{
+							"key": "date_supply",
+							"value": "09.05.1945",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Create test invoice via Postman",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DelThat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "149fe0bc-d94c-47b3-938f-c23c66da6c69",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/{{lastreq}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{lastreq}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "084f7a40-3887-4f55-8938-5b9703996ffe",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "{{lastreq}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "number",
+							"value": "N-000000000002",
+							"type": "text"
+						},
+						{
+							"key": "date_created",
+							"value": "02.04.2019",
+							"type": "text"
+						},
+						{
+							"key": "date_due",
+							"value": "22.06.1941",
+							"type": "text"
+						},
+						{
+							"key": "date_supply",
+							"value": "09.05.1945",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Edit test invoice via Postman",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/{{lastreq}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{lastreq}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
