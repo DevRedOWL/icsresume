@@ -35,6 +35,22 @@
 
 ![Удаление накладной с использованием Fiddler](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Fiddler_2-3.png)
 
-## 3. Автоматическое тестирование с использованием Postman
+## 3.1 Автоматическое тестирование запросов с использованием Postman и Newman
+> FirstCollectionTest.postman_collection.json - файл первой коллекции
+FirstEnvironmentTest.postman_environment.json - файл первого окружения
 
+> Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Postman
 
+![Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Postman](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Postman_3-1.png)
+
+> Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Newman
+
+![Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Newman](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Newman_3-1.png)
+
+## 3.2 Автоматическое тестирование фильтрации с использованием Newman
+> FirstCollectionTest.postman_collection.json - файл первой коллекции
+FirstEnvironmentTest.postman_environment.json - файл первого окружения
+
+> Результаты тестирования GET запросов с параметрами с использованием Newman
+
+![Результаты тестирования GET запросов с параметрами с использованием Newman](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Newman_3-2.png)
