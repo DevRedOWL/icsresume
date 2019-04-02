@@ -17,7 +17,7 @@
 <body class="body">
 
   <!-- Контейнер с ошибками -->
-  <div class="test" style="height:50px; position:fixed; z-index: 10; width:100%;">
+  <div id="ErrorList" style="height:50px; position:fixed; z-index: 10; width:100%;">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
@@ -131,7 +131,7 @@
   </div>
 
   <!-- Демонстрация списка -->
-  <div id="ShowListOfInvoice" class="container viewcard">
+  <div id="InvoicesList" class="container viewcard">
     <table id="ElementsList" class="table table-striped">
       <thread style="color: #007bff">
         <th scope="col">Дата выставления счета</th>
@@ -145,7 +145,7 @@
   </div>
 
   <!-- Кнопки для отладки -->
-  <div class="container">
+  <div id="DebugButtons" class="container">
     <div class="row marg">
       <div class="col">
         <button type="button" class="btn btn-secondary" name="button" onclick="GotIt()">Отобразить все накладные без сортировки и фильтрации</button>
