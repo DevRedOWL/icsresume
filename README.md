@@ -1,1 +1,1 @@
-> В папке RestApiTest (https://github.com/DevRedOWL/icsresume/tree/master/RestApiTest) находятся скриншоты тестирования API с использованием инструментов Chrome, Postman и Fiddler
+> Р’ РїР°РїРєРµ RestApiTest (https://github.com/DevRedOWL/icsresume/tree/master/RestApiTest) РЅР°С…РѕРґСЏС‚СЃСЏ СЃРєСЂРёРЅС€РѕС‚С‹ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ API СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ Chrome, Postman Рё Fiddler
