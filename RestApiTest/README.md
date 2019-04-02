@@ -36,8 +36,9 @@
 ![Удаление накладной с использованием Fiddler](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Fiddler_2-3.png)
 
 ## 3.1 Автоматическое тестирование запросов с использованием Postman и Newman
-> FirstCollectionTest.postman_collection.json - файл первой коллекции
-FirstEnvironmentTest.postman_environment.json - файл первого окружения
+> [FirstCollectionTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/FirstCollectionTest.postman_collection.json) - файл первой коллекции
+
+> [FirstEnvironmentTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/FirstEnvironmentTest.postman_environment.json) - файл первого окружения
 
 > Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Postman
 
@@ -48,8 +49,9 @@ FirstEnvironmentTest.postman_environment.json - файл первого окру
 ![Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Newman](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/Newman_3-1.png)
 
 ## 3.2 Автоматическое тестирование фильтрации с использованием Newman
-> FirstCollectionTest.postman_collection.json - файл первой коллекции
-FirstEnvironmentTest.postman_environment.json - файл первого окружения
+> [SecondCollectionTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/SecondCollectionTest.postman_collection.json) - файл второй коллекции
+
+> [SecondEnvironmentTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/SecondEnvironmentTest.postman_environment.json) - файл второго окружения
 
 > Результаты тестирования GET запросов с параметрами с использованием Newman
 
