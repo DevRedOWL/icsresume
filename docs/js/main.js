@@ -78,11 +78,11 @@ function PostThat() {
 // Метод удаления элемента
 function RemoveItem(objectid) {
     console.log("[DELETE] Запрос:\n" + ServerUrl + "/" + objectid); // Отладка
+    $('#' + objectid).remove(); // Удаляем элемент из списка
     $.ajax({
         url: ServerUrl + "/" + objectid,
         type: 'DELETE',
-        success: function () {
-            $('#' + objectid).remove();
+        success: function () {            
             ShowMessage('#removed'); // Показываем уведомление об удалении
             console.log('Накладная #' + objectid + ' удалена');
         }
