@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/master.css">
   <link rel="stylesheet" href="css/fa.css">
@@ -21,52 +22,112 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div id="sended" class="alert alert-success" style="display: none;">Накладная успешно добавлена в базу.</div>
-        <div id="removed" class="alert alert-success" style="display: none;">Накладная успешно удалена.</div>
         <div id="edited" class="alert alert-success" style="display: none;">Накладная успешно изменена.</div>
+        <div id="removed" class="alert alert-success" style="display: none;">Накладная успешно удалена.</div>
+        <div id="sorted" class="alert alert-info" style="display: none;">Сортировка выполнена.</div>
+        <div id="exist" class="alert alert-warning" style="display: none;">Накладная с такими же параметрами уже существует.</div>
         <div id="unsended" class="alert alert-danger" style="display: none;">Все поля должны быть заполнены.</div>
-        <div id="exist" class="alert alert-warning" style="display: none;">Накладная с такими параметрами уже существует.</div>
-        <noscript><div class="alert alert-danger">Для работы сайта необходим JavaScript</div></noscript>
+        <noscript><div class="alert alert-danger">Для работы сайта необходим JavaScript.</div></noscript>
       </div>
       <div class="col-md-2"></div>
     </div>
-    </div>
+  </div>
 
   <!-- Меню добавления -->
   <div id="AddNewInvoice" class="container viewcard">
     <form>
+      <!-- 1 Строка -->
       <div class="row"><div class="col"><span class="badge badge-primary">Номер накладной</span></div></div>
       <div class="row">
         <div class="col">
           <input id="Number" class="form-control" placeholder="Номер накладной" required></input>
         </div>
       </div>
-
+      <!-- 2 Строка -->
       <div class="row marg">
         <div class="col"><span class="badge badge-primary">Дата поставки</span></div>
-        <div class="col"><span class="badge badge-primary">Дата выставления счета</span></div></div>
+        <div class="col"><span class="badge badge-primary">Дата выставления счета</span></div>
+      </div>
       <div class="row">
         <div class="col">
-          <input id="Supply" type="date" class="form-control" placeholder="Дата поставки" required></input>
+          <input id="Supply" type="date" class="form-control" placeholder="Дата поставки" min="1970-1-1" max="2100-12-30" required></input>
         </div>
         <div class="col">
-          <input id="Invoice" type="date" class="form-control" placeholder="Дата выставления счета" required></input>
+          <input id="Invoice" type="date" class="form-control" placeholder="Дата выставления счета" min="1970-1-1" max="2100-12-30" required></input>
         </div>
       </div>
-
+      <!-- 3 Строка -->
       <div class="row marg"><div class="col"><span class="badge badge-primary">Комментарий</span></div></div>
       <div class="row">
         <div class="col">
           <textarea id="Comment" class="form-control" placeholder="Комментарий" rows="3"></textarea>
         </div>
       </div>
-
+      <!-- Кнопка сохранения -->
       <div class="row marg">
         <div class="col">
           <button type="button" class="btn btn-primary" name="button" onclick="PostThat()">Добавить накладную</button>
         </div>
       </div>
     </form>
+  </div>
 
+  <!-- Меню фильтрации -->
+  <div id="FilteredRequest" class="container viewcard">
+    <div class="form-group">
+      <!-- Подписи -->
+      <div class="row marg">
+        <div class="col"><span class="badge badge-danger">Поиск</span></div>
+        <div class="col"><span class="badge badge-danger">Фильтр</span></div>
+        <div class="col"><span class="badge badge-danger">Сортировать по</span></div>
+        <div class="col"><span class="badge badge-danger">Тип сортировки</span></div>
+        <div class="col"></div>
+      </div>
+      <!-- Поля -->
+      <div class="row">
+        <!-- Текст поиска -->
+        <div class="col">
+          <input id="FilterText" class="form-control" placeholder="Введите значение" required></input>
+        </div>
+        <!-- Поле для поиска -->
+        <div class="col">
+          <select class="form-control" id="FilterType">
+            <option>Все поля</option>
+            <option>ID</option>
+            <option>Номер накладной</option>
+            <option>Дата изменения</option>
+            <option>Дата поставки</option>
+            <option>Дата выставления счета</option>
+            <option>Комментарий</option>
+          </select>
+        </div>
+        <!-- Поле для сортировки -->
+        <div class="col">
+          <select class="form-control" id="OrderName">
+            <option>ID</option>
+            <option>Номер накладной</option>
+            <option>Дата изменения</option>
+            <option>Дата поставки</option>
+            <option>Дата выставления счета</option>
+            <option>Комментарий</option>
+          </select>
+        </div>
+        <!-- Тип сортировки -->
+        <div class="col">
+          <select class="form-control" id="OrderType">
+            <option>Не сортировать</option>
+            <option>По возрастанию</option>
+            <option>По убыванию</option>
+          </select>
+        </div>
+        <!-- Кнопка сохранения -->
+        <div class="col">
+          <button type="button" class="btn btn-danger" style="width: 100%;" onclick="FilterFields()">
+            Применить
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Демонстрация списка -->
@@ -87,7 +148,7 @@
   <div class="container">
     <div class="row marg">
       <div class="col">
-        <button type="button" class="btn btn-secondary" name="button" onclick="GotIt()">Обновить список накладных</button>
+        <button type="button" class="btn btn-secondary" name="button" onclick="GotIt()">Отобразить все накладные без сортировки и фильтрации</button>
       </div>
     </div>
   </div>
@@ -95,10 +156,11 @@
 </body>
 
 <footer>
-    <script src="js/crypto.js"></script>
-    <script src="js/jq.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/main.js"></script>
+  <script src="js/crypto.js"></script>
+  <script src="js/jq.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/main.js"></script>
 </footer>
 
 </html>

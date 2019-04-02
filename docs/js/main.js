@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 // Метод отображения сообщений
 function ShowMessage(type) {
-    $('#sended').hide(); $('#edited').hide(); $('#removed').hide(); $('#unsended').hide(); $('#exist').hide();
+    $('#sended').hide(); $('#edited').hide(); $('#removed').hide(); $('#sorted').hide(); $('#exist').hide(); $('#unsended').hide();
     if (type != "none") {
         $(type).fadeIn('fast');
         setTimeout(function () { $(type).fadeOut('slow'); }, 2000);
@@ -28,6 +28,7 @@ function NewLine(thisid, name, date_due, date_sup, comment, created) {
 // Метод получения списка
 function GotIt() {
     $('#ElementsList tr').slice(1).remove(); // Очищаем таблицу
+    console.log("[GET] Запрос:\n" + ServerUrl); // Отладка
     $.get(ServerUrl, onAjaxSuccess);
 }
 
@@ -44,22 +45,23 @@ function onAjaxSuccess(data) {
 // Метод добавления элемента
 function PostThat() {
     // Упрощаем использование значений полей
-    var num = document.getElementById('Number').value;
-    var sup = new Date(document.getElementById('Supply').value).toLocaleDateString();
-    var inv = new Date(document.getElementById('Invoice').value).toLocaleDateString();
-    var com = document.getElementById('Comment').value;
+    var num = $('#Number').val(); // document.getElementById('Number').value
+    var sup = new Date($('#Supply').val()).toLocaleDateString();
+    var inv = new Date($('#Invoice').val()).toLocaleDateString();
+    var com = $('#Comment').val();
     datte = new Date(); var dat = datte.toLocaleDateString();
     var thisid = CryptoJS.MD5(num + sup + inv + com).toString(); // Преобразуем ид в md5
     // Если все поля, кроме комментария заполнены
     if (num != 0 && sup != "Invalid Date" && inv != "Invalid Date") {
         // Создаем пост запрос на основании аргументов    
+        console.log("[POST] Запрос:\n" + ServerUrl); // Отладка
         $.post(ServerUrl, { id: thisid, comment: com, date_created: dat, date_due: inv, date_supply: sup, number: num })
             .done(function() // Если постинг прошел успешно
             {              
                 ShowMessage('#sended'); // Показываем уведомление о добавлении
                 // Добавляем строку в таблицу             
                 $('#ElementsList').append(NewLine(thisid, num, inv, sup, com, dat));
-                console.log('Накладная #' + thisid + ' успешно добавлена');
+                console.log('Накладная #' + thisid + ' добавлена');
             })
             .fail(function() // Если произошла ошибка
             {
@@ -75,13 +77,14 @@ function PostThat() {
 
 // Метод удаления элемента
 function RemoveItem(objectid) {
+    console.log("[DELETE] Запрос:\n" + ServerUrl + "/" + objectid); // Отладка
     $.ajax({
         url: ServerUrl + "/" + objectid,
         type: 'DELETE',
         success: function () {
             $('#' + objectid).remove();
             ShowMessage('#removed'); // Показываем уведомление об удалении
-            console.log('Накладная #' + objectid + ' успешно удалена');
+            console.log('Накладная #' + objectid + ' удалена');
         }
     });
 }
@@ -108,20 +111,21 @@ function GetFields(data) {
 
 // Метод сохранения изменений
 function OnSaveChanges(objectid) {
-    var sup = new Date(document.getElementById(objectid + "_SUP").value).toLocaleDateString();
-    var inv = new Date(document.getElementById(objectid + "_INV").value).toLocaleDateString();
-    var com = document.getElementById(objectid + "_COM").value;
-    var num = document.getElementById(objectid + "_NUM").value;
+    var sup = new Date($("#" + objectid + "_SUP").val()).toLocaleDateString();
+    var inv = new Date($("#" + objectid + "_INV").val()).toLocaleDateString();
+    var com = $("#" + objectid + "_COM").val();
+    var num = $("#" + objectid + "_NUM").val();
     datte = new Date(); var dat = datte.toLocaleDateString();
-    if (num != 0 && sup != "Invalid Date" && inv != "Invalid Date") { 
-        // Формируем PUT запрос
+    if (num != 0 && sup != "Invalid Date" && inv != "Invalid Date") {
+        console.log("[PUT] Запрос:\n" + ServerUrl + "/" + objectid); // Отладка
+        // Формируем PUT запрос       
         $.ajax({
             url: ServerUrl + "/" + objectid,
             type: 'PUT', 
             data: { comment: com, date_created: dat, date_due: inv, date_supply: sup, number: num },
             success: function () {
                 ShowMessage('#edited'); // Показываем уведомление об удалении
-                console.log('Накладная #' + objectid + ' успешно изменена');
+                console.log('Накладная #' + objectid + ' изменена');
             }
         });
         $("#" + objectid).replaceWith(NewLine(objectid, num, inv, sup, com, dat)); // Заменяем строчку
@@ -129,4 +133,76 @@ function OnSaveChanges(objectid) {
     else {
         ShowMessage('#unsended'); // Показываем уведомление об ошибке
     }
+}
+
+// Метод фильтрации и поиска
+function FilterFields() {
+    var SearchFor = $("#FilterText").val(); // Что ищем
+    var SearchIn = $("#FilterType").val(); // Где ищем
+    var SortFor = $("#OrderName").val(); // По какому параметру сортируем
+    var SortBy = $("#OrderType").val(); // Как сортируем
+    var ThisRequest = ServerUrl + "?";
+    /* Проходимся по полю для сортировки */
+    if (SortBy != "Не сортировать") {
+        switch (SortFor) {
+            case "ID": {
+                ThisRequest += "_sort=id";
+            } break;
+            case "Номер накладной": {
+                ThisRequest += "_sort=number";
+            } break;
+            case "Дата изменения": {
+                ThisRequest += "_sort=date_created";
+            } break;
+            case "Дата поставки": {
+                ThisRequest += "_sort=date_due";
+            } break;
+            case "Дата выставления счета": {
+                ThisRequest += "_sort=date_supply";
+            } break;
+            case "Комментарий": {
+                ThisRequest += "_sort=comment";
+            } break;
+        }
+    }   
+    /* Проходимся по типу сортировки */
+    switch (SortBy) {
+        case "По возрастанию": {
+            ThisRequest += "&_order=ASC";
+        } break;
+        case "По убыванию": {
+            ThisRequest += "&_order=DESC";
+        } break;
+    }
+    /* Проходимся по полю для поиска */
+    if (SearchFor != 0) {
+        switch (SearchIn) {
+            case "Все поля": {
+                ThisRequest += "&q=" + SearchFor;
+            } break;
+            case "ID": {
+                ThisRequest += "&id=" + SearchFor;
+            } break;
+            case "Номер накладной": {
+                ThisRequest += "&number=" + SearchFor;
+            } break;
+            case "Дата изменения": {
+                ThisRequest += "&date_created=" + SearchFor;
+            } break;
+            case "Дата поставки": {
+                ThisRequest += "&date_due=" + SearchFor;
+            } break;
+            case "Дата выставления счета": {
+                ThisRequest += "&date_supply=" + SearchFor;
+            } break;
+            case "Комментарий": {
+                ThisRequest += "&comment=" + SearchFor;
+            } break;
+        }   
+    }     
+    console.log("[GET] Запрос:\n" + ThisRequest); // Отладка
+    //
+    $('#ElementsList tr').slice(1).remove(); // Очищаем таблицу
+    $.get(ThisRequest, onAjaxSuccess); // Выполняем GET запрос
+    ShowMessage('#sorted'); // Показываем уведомление о существовании
 }
