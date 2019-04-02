@@ -37,6 +37,7 @@
 
 ## 3.1 Автоматическое тестирование запросов с использованием Postman и Newman
 > [FirstCollectionTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/FirstCollectionTest.postman_collection.json) - файл первой коллекции
+
 > [FirstEnvironmentTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/FirstEnvironmentTest.postman_environment.json) - файл первого окружения
 
 > Результаты тестирования GET, POST, PUT, DELETE запросов с использованием Postman
@@ -49,7 +50,8 @@
 
 ## 3.2 Автоматическое тестирование фильтрации с использованием Newman
 > [SecondCollectionTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/SecondCollectionTest.postman_collection.json) - файл второй коллекции
-> [SecondEnvironmentTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/SecondEnvironmentTest.postman_environment.json) - файл второй окружения
+
+> [SecondEnvironmentTest](https://github.com/DevRedOWL/icsresume/blob/master/RestApiTest/SecondEnvironmentTest.postman_environment.json) - файл второго окружения
 
 > Результаты тестирования GET запросов с параметрами с использованием Newman
 
